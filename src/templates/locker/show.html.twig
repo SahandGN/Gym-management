@@ -25,6 +25,7 @@
     <a href="{{ path('app_locker_index') }}">back to list</a>
 
     <a href="{{ path('app_locker_edit', {'id': locker.id}) }}">edit</a>
+    <a href="{{ path('app_locker_open', {'id': locker.id}) }}">{{ locker.isEmpty ? 'Open' : 'Close' }}</a>
 
     {{ include('locker/_delete_form.html.twig') }}
 {% endblock %}
