@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Locker{% endblock %}
+
+{% block body %}
+    <h1>Edit Locker</h1>
+
+    {{ include('locker/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_locker_index') }}">back to list</a>
+
+    {{ include('locker/_delete_form.html.twig') }}
+{% endblock %}

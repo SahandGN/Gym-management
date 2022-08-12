@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Locker index{% endblock %}
+
+{% block body %}
+    <h1>Locker index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Number</th>
+                <th>IsEmpty</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for locker in lockers %}
+            <tr>
+                <td>{{ locker.id }}</td>
+                <td>{{ locker.number }}</td>
+                <td>{{ locker.isEmpty ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_locker_open', {'id': locker.id}) }}">{{locker.isEmpty ? 'open' : 'close'}}</a>
+                    <a href="{{ path('app_locker_show', {'id': locker.id}) }}">show</a>
+                    <a href="{{ path('app_locker_edit', {'id': locker.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_locker_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Locker{% endblock %}
+
+{% block body %}
+    <h1>Locker</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ locker.id }}</td>
+            </tr>
+            <tr>
+                <th>Number</th>
+                <td>{{ locker.number }}</td>
+            </tr>
+            <tr>
+                <th>IsEmpty</th>
+                <td>{{ locker.isEmpty ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_locker_index') }}">back to list</a>
+
+    <a href="{{ path('app_locker_edit', {'id': locker.id}) }}">edit</a>
+
+    {{ include('locker/_delete_form.html.twig') }}
+{% endblock %}
