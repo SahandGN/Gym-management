@@ -2,12 +2,17 @@
 
 namespace App\Entity;
 
+use App\Model\TimeLoggerInterface;
+use App\Model\TimeLoggerTrait;
 use App\Repository\LockerRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: LockerRepository::class)]
-class Locker
+class Locker implements TimeLoggerInterface
 {
+
+    use TimeLoggerTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]

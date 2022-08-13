@@ -2,12 +2,17 @@
 
 namespace App\Entity;
 
+use App\Model\TimeLoggerInterface;
+use App\Model\TimeLoggerTrait;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
-class Product
+class Product implements TimeLoggerInterface
 {
+
+    use TimeLoggerTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
