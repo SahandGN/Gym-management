@@ -45,6 +45,7 @@ class LockerController extends AbstractController
     {
         return $this->render('locker/show.html.twig', [
             'locker' => $locker,
+            'owner' => $locker->getOwner()
         ]);
     }
 

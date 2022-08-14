@@ -24,6 +24,10 @@ class Locker implements TimeLoggerInterface
     #[ORM\Column(nullable: true)]
     private ?bool $isEmpty = null;
 
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?User $owner = null;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -49,6 +53,18 @@ class Locker implements TimeLoggerInterface
     public function setIsEmpty(?bool $isEmpty): self
     {
         $this->isEmpty = $isEmpty;
+
+        return $this;
+    }
+
+    public function getOwner(): ?User
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?User $owner): self
+    {
+        $this->owner = $owner;
 
         return $this;
     }
