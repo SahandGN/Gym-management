@@ -34,6 +34,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TimeLog
     #[ORM\Column]
     private ?string $password = null;
 
+    #[ORM\OneToOne(mappedBy: 'owner', targetEntity: Locker::class, cascade: ['persist', 'remove'])]
+    private ?Locker $locker;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $name = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $lastname = null;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -102,5 +112,50 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TimeLog
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+    public function getLocker(): ?Locker
+    {
+        return $this->locker;
+    }
+
+    public function setLocker(?Locker $locker): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($locker === null && $this->locker !== null) {
+            $this->locker->setOwner(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($locker !== null && $locker->getOwner() !== $this) {
+            $locker->setOwner($this);
+        }
+
+        $this->locker = $locker;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(?string $lastname): self
+    {
+        $this->lastname = $lastname;
+
+        return $this;
     }
 }

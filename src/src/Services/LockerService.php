@@ -3,20 +3,21 @@
 namespace App\Services;
 
 use App\Entity\Locker;
+use App\Entity\User;
 use App\Repository\LockerRepository;
 use App\Repository\UserRepository;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Csrf\TokenStorage\TokenStorageInterface;
 
 class LockerService
 {
-    private $userRepository;
     private $lockerRepository;
+    private $tokenStorage;
 
-    public function __construct(LockerRepository $lockerRepository, UserRepository $userRepository)
+    public function __construct(LockerRepository $lockerRepository, TokenStorageInterface $tokenStorage)
     {
         $this->lockerRepository = $lockerRepository;
-        $this->userRepository = $userRepository;
+        $this->tokenStorage = $tokenStorage;
     }
 
 
@@ -27,20 +28,17 @@ class LockerService
         /** @var locker[] $lockers */
         $lockers = $this->lockerRepository->findAll();
 
-        /** @var User[] $user */
-        $users = $this->userRepository->findAll();
-
-
+        $token = $this->tokenStorage->getToken();
+        /** @var User $user */
+        $user = $token == null ? null : $this->tokenStorage->getToken()->getUser();
+        
+        $user->setLocker(null);
         foreach ($lockers as $locker) {
             if ($locker->isIsEmpty()) {
-                foreach ($users as $user) {
-                    if ($user instanceof UserInterface) {
-                        $locker->setOwner($user);
-                        $locker->setIsEmpty(false);
-                        $this->lockerRepository->add($locker,true);
-                        return true;
-                    }
-                }
+                $locker->setOwner($user);
+                $locker->setIsEmpty(false);
+                $this->lockerRepository->add($locker, true);
+                return true;
             }
         }
         return false;

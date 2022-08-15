@@ -6,6 +6,7 @@ use App\Entity\Locker;
 use App\Form\LockerType;
 use App\Repository\LockerRepository;
 use App\Services\LockerService;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -42,14 +43,14 @@ class LockerController extends AbstractController
         ]);
     }
 
-//    #[Route('/{id}', name: 'app_locker_show', methods: ['GET'])]
-//    public function show(Locker $locker): Response
-//    {
-//        return $this->render('locker/show.html.twig', [
-//            'locker' => $locker,
-//            'owner' => $locker->getOwner()
-//        ]);
-//    }
+    #[Route('/{id}', name: 'app_locker_show', methods: ['GET'])]
+    #[ParamConverter('locker', options: ['id' => 'id'])]
+    public function show(Locker $locker): Response
+    {
+        return $this->render('locker/show.html.twig', [
+            'locker' => $locker,
+        ]);
+    }
 
     #[Route('/{id}/edit', name: 'app_locker_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Locker $locker, LockerRepository $lockerRepository): Response
@@ -87,14 +88,5 @@ class LockerController extends AbstractController
         return $this->redirectToRoute('app_locker_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/reverse', name: 'app_locker_reverse', methods: ['GET', 'POST'])]
-    public function emptyLocker(Request $request, LockerService $lockerService, LockerRepository $lockerRepository)
-    {
-        $available = $lockerService->checkAvailability();
 
-        if ($available) {
-            return $this->redirectToRoute('app_user', [], Response::HTTP_SEE_OTHER);
-        }
-        return error_log("error",1);
-    }
 }

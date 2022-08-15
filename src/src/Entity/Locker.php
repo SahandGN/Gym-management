@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Model\LockerOwnerInterface;
 use App\Model\TimeLoggerInterface;
 use App\Model\TimeLoggerTrait;
 use App\Repository\LockerRepository;
@@ -24,7 +25,7 @@ class Locker implements TimeLoggerInterface
     #[ORM\Column(nullable: true)]
     private ?bool $isEmpty = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(inversedBy: 'locker', targetEntity: User::class, cascade: ['persist', 'remove'])]
     private ?User $owner = null;
 
 
@@ -68,4 +69,14 @@ class Locker implements TimeLoggerInterface
 
         return $this;
     }
+//
+//    public function getLockerOwner(): User
+//    {
+//
+//    }
+//
+//    public function setLockerOwner(): User
+//    {
+//
+//    }
 }
