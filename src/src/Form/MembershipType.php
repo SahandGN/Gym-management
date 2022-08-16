@@ -15,6 +15,7 @@ class MembershipType extends AbstractType
             ->add('name')
             ->add('price')
             ->add('length')
+            ->add('duration')
         ;
     }
 

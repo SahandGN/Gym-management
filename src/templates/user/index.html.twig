@@ -5,12 +5,12 @@
 {% block body %}
 
 <div class="example-wrapper">
-    <h1>Hello!</h1>
+    <h1>Hello {{user.username}}!</h1>
 
     <ul>
-        <li><a href="{{path('app_user_locker')}}">
-                Open Locker</a></li>
+        <li><a href="{{path('app_user_locker')}}">Open Locker</a></li>
         <li><a href="index.php/product">Products</a></li>
+        <li><a href="{{path('app_membership_show', {'id': membership.id } )}}">{{membership.name}}</a></li>
     </ul>
 </div>
 {% endblock %}

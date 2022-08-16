@@ -5,9 +5,7 @@ namespace App\Services;
 use App\Entity\Locker;
 use App\Entity\User;
 use App\Repository\LockerRepository;
-use App\Repository\UserRepository;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 class LockerService
 {

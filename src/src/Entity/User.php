@@ -43,6 +43,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TimeLog
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $lastname = null;
 
+    #[ORM\ManyToOne(inversedBy: 'member')]
+    private ?Membership $membership = null;
+
 
     public function getId(): ?int
     {
@@ -155,6 +158,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TimeLog
     public function setLastname(?string $lastname): self
     {
         $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    public function getMembership(): ?Membership
+    {
+        return $this->membership;
+    }
+
+    public function setMembership(?Membership $membership): self
+    {
+        $this->membership = $membership;
 
         return $this;
     }
