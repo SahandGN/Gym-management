@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Membership;
 use App\Form\MembershipType;
 use App\Repository\MembershipRepository;
+use App\Services\MembershipService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -75,4 +76,12 @@ class MembershipController extends AbstractController
 
         return $this->redirectToRoute('app_membership_index', [], Response::HTTP_SEE_OTHER);
     }
+
+//    #[Route('/buy', name: 'app_user_buy_membership', methods: ['GET'])]
+//    public function buyMembership(MembershipService $membershipService, MembershipRepository $membershipRepository): Response
+//    {
+//        $memId = $membershipRepository->find(1);
+//        $membershipService->buyMembership($memId);
+//        return $this->redirectToRoute('app_user', [], Response::HTTP_SEE_OTHER);
+//    }
 }

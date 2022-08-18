@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Model\TimeBuyerInterface;
 use App\Model\TimeLoggerInterface;
 use App\Model\TimeLoggerTrait;
 use App\Repository\UserRepository;
@@ -12,7 +13,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['username'], message: 'There is already an account with this username')]
-class User implements UserInterface, PasswordAuthenticatedUserInterface, TimeLoggerInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface, TimeLoggerInterface, TimeBuyerInterface
 {
 
     use TimeLoggerTrait;
@@ -45,6 +46,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TimeLog
 
     #[ORM\ManyToOne(inversedBy: 'member')]
     private ?Membership $membership = null;
+
+    #[ORM\Column(type:'datetime_immutable')]
+    protected \DateTimeImmutable $shoppedAt;
 
 
     public function getId(): ?int
@@ -171,6 +175,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TimeLog
     {
         $this->membership = $membership;
 
+        return $this;
+    }
+
+    public function getShoppedAt(): \DateTimeImmutable
+    {
+        return $this->shoppedAt;
+    }
+
+    public function setShoppedAt(\DateTimeImmutable $shoppedAt): TimeBuyerInterface
+    {
+        $this->shoppedAt = $shoppedAt;
         return $this;
     }
 }
