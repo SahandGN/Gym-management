@@ -25,12 +25,6 @@ class UserController extends AbstractController
         /** @var User $user */
         $user = $this->getUser();
 
-        if ($user->getMembership() != null) {
-            /** @var Membership $membership */
-            $m = $user->getMembership();
-            $membership = $membershipService->membershipIdentifier($m->getId());
-        }
-
             return $this->render('user/index.html.twig', [
                 'controller_name' => 'UserController',
                 'user' => $user,

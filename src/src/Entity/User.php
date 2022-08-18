@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['username'], message: 'There is already an account with this username')]
@@ -24,6 +25,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TimeLog
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Assert\NotBlank]
+    #[Assert\Regex(
+        pattern: "/^((\+98|0)9\d{9})$/",
+        message: "You have to type phone number only"
+    )]
     private ?string $username = null;
 
     #[ORM\Column]
@@ -47,7 +53,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TimeLog
     #[ORM\ManyToOne(inversedBy: 'member')]
     private ?Membership $membership = null;
 
-    #[ORM\Column(type:'datetime_immutable')]
+    #[ORM\Column(type:'datetime_immutable', nullable: true)]
     protected \DateTimeImmutable $shoppedAt;
 
 
