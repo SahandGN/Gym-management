@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}{{'register.title'|trans}}{% endblock %}
 
 {% block body %}
     <div class="container">
@@ -8,13 +8,11 @@
         <div class="col-md-auto col align-self-center">
             {{ form_start(registrationForm) }}
             {{ form_row(registrationForm.username) }}
-            {{ form_row(registrationForm.plainPassword, {
-                label: 'Password'
-            }) }}
+            {{ form_row(registrationForm.plainPassword)}}
             {{ form_row(registrationForm.name) }}
             {{ form_row(registrationForm.lastname) }}
 
-            <button type="submit" class="btn btn-outline-primary">Register</button>
+            <button type="submit" class="btn btn-outline-primary">{{'register.button'|trans}}</button>
             {{ form_end(registrationForm) }}
         </div>
     </div>

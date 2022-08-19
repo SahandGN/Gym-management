@@ -1,38 +1,47 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Locker index{% endblock %}
+{% block title %}{{ 'global.locker'|trans }}{% endblock %}
 
 {% block body %}
-    <h1>Locker index</h1>
+    <h1>{{ 'global.locker'|trans }}</h1>
+    {% for locker in lockers %}
+        <div
+                {% if locker.isEmpty %}
+                    class="card bg-warning mb-3 d-inline-block"
+                {% else %}
+                    class="card bg-light mb-3 d-inline-block"
+                {% endif %}
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Number</th>
-                <th>IsEmpty</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for locker in lockers %}
-            <tr>
-                <td>{{ locker.id }}</td>
-                <td>{{ locker.number }}</td>
-                <td>{{ locker.isEmpty ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('app_locker_open', {'id': locker.id}) }}">{{locker.isEmpty ? 'open' : 'close'}}</a>
-                    <a href="{{ path('app_locker_show', {'id': locker.id}) }}">show</a>
-                    <a href="{{ path('app_locker_edit', {'id': locker.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                style="max-width: 18rem;">
+            <div class="card-header">{{ locker.number }}</div>
+            <div class="card-body">
+                <h5 class="card-title">
+                    {% if locker.isEmpty %} {{ 'global.empty'|trans }}
+                    {% else %} {{ 'global.full'|trans }} {% endif %}
+                </h5>
+                <br>
+                <div>
+                    <a href="{{ path('app_locker_open', {'id': locker.id}) }}" class="btn btn-secondary">
+                        {% if locker.isEmpty %} {{ 'global.close'|trans }}
+                        {% else %} {{ 'global.open'|trans }} {% endif %}
+                    </a>
+                    <a href="{{ path('app_locker_show', {'id': locker.id}) }}" class="btn btn-primary">
+                        {{ 'global.show'|trans }}</a>
+                    <a href="{{ path('app_locker_edit', {'id': locker.id}) }}" class="btn btn-info">
+                        {{ 'global.edit'|trans }}</a>
+                </div>
+            </div>
+        </div>
 
-    <a href="{{ path('app_locker_new') }}">Create new</a>
+    {% else %}
+        <div class="jumbotron">
+            <h1 class="display-4">{{ 'global.emptydata'|trans }}</h1>
+            <hr class="my-4">
+            <p>{{ 'global.create_data_text'|trans }}</p>
+        </div>
+    {% endfor %}
+    <div>
+        <button type="button" class="btn btn-outline-dark btn-block" href="{{ path('app_locker_new') }}">
+            {{ 'global.create'|trans }}</button>
+    </div>
 {% endblock %}

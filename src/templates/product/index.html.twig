@@ -1,37 +1,34 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Product index{% endblock %}
+{% block title %}{{ 'global.product'|trans }}{% endblock %}
 
 {% block body %}
-    <h1>Product index</h1>
+    <h1>{{ 'global.product'|trans }}</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
         {% for product in products %}
-            <tr>
-                <td>{{ product.id }}</td>
-                <td>{{ product.name }}</td>
-                <td>{{ product.price }}</td>
-                <td>
-                    <a href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
-                    <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
-                </td>
-            </tr>
+            <div class="card bg-light mb-3 d-lg-inline-flex " style="max-width: 18rem;">
+                <div class="card-header">{{ product.name }}</div>
+                <div class="card-body">
+                    <p class="card-text"><small>{{'global.product_price'|trans}}</small></p>
+                    <h5 class="card-title"> {{product.price | format_currency('IRR')}} </h5>
+                    <br>
+                    <div>
+                        <a href="{{ path('app_locker_show', {'id': product.id}) }}" class="btn btn-primary">
+                           {{ 'global.show'|trans }}</a>
+                        <a href="{{ path('app_locker_edit', {'id': product.id}) }}" class="btn btn-info">
+                            {{ 'global.edit'|trans }}</a>
+                    </div>
+                </div>
+            </div>
         {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
+            <div class="jumbotron">
+                <h1 class="display-4">{{ 'global.emptydata'|trans }}</h1>
+                <hr class="my-4">
+                <p>{{ 'global.create_data_text'|trans }}</p>
+            </div>
         {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_product_new') }}">Create new</a>
+    <div>
+        <button type="button" class="btn btn-outline-dark btn-block" href="{{ path('app_locker_new') }}">
+            {{ 'global.create'|trans }}</button>
+    </div>
 {% endblock %}

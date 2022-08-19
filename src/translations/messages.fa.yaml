@@ -1,0 +1,44 @@
+login:
+  title: ورود
+  username: شماره تلفن
+  password: رمز
+  welcome:
+    title: خوش آمدید
+  button: ورود
+register:
+  button: ثبت نام
+  title: ثبت نام
+form:
+  register:
+    username: شماره تلفن
+    name: نام
+    lastname: نام خانوادگی
+    password: رمز
+global:
+  id: شناسه
+  name: نام
+  price: قیمت
+  length: جلسات
+  duration: مدت
+  action: گزینه ها
+  show: نمایش
+  edit: ویرایش
+  emptydata: محتوایی یافت نشد
+  create: ساخت جدید
+  number: شماره
+  open: باز
+  close: بسته
+  empty: خالی
+  full: پر
+  welcome: خوش آمدید
+  product: فروشگاه
+  membership: حق عضویت
+  enter: ورود
+  locker: کمد
+  create_data_text: برای ایجاد محتوای جدید روی دکمه زیر کلیک کنید
+  product_price: قیمت محصول
+locker:
+  isempty: وضعیت
+user:
+  openlocker: باز کردن کمد
+  give_me_locker: یک کمد برایم باز کن

@@ -22,9 +22,12 @@
         "symfony/runtime": "6.0.*",
         "symfony/security-bundle": "6.0.*",
         "symfony/security-core": "6.0.*",
+        "symfony/translation": "6.0.*",
         "symfony/validator": "6.0.*",
         "symfony/webpack-encore-bundle": "^1.15",
         "symfony/yaml": "6.0.*",
+        "twig/extra-bundle": "^3.4",
+        "twig/intl-extra": "^3.4",
         "twig/twig": "^3.0"
     },
     "config": {

@@ -1,15 +1,47 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello{% endblock %}
+{% block title %}{{ 'global.welcome'|trans }}{% endblock %}
 
 {% block body %}
-
-<div class="example-wrapper">
-    <h1>Hello {{user.username}}!</h1>
-
-    <ul>
-        <li><a href="{{path('app_user_locker')}}">Open Locker</a></li>
-        <li><a href="index.php/product">Products</a></li>
-    </ul>
-</div>
+    <h2>{{ 'global.welcome'|trans }}</h2>
+    <h1>{%if user.name is not null%} {{ user.name }}
+    {%else%}{{ user.username }}{%endif%}!
+    </h1>
+    <br>
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ 'user.give_me_locker'|trans }}</h5>
+                            <br>
+                            <a href="{{ path('app_user_locker') }}"
+                               class="btn btn-primary">{{ 'user.openlocker'|trans }}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ 'global.membership'|trans }}</h5>
+                            <br>
+                            <a href="{{ path('app_user_locker') }}"
+                               class="btn btn-primary">{{ 'global.enter'|trans }}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ 'global.product'|trans }}</h5>
+                            <br>
+                            <a href="{{ path('app_product_index') }}"
+                               class="btn btn-primary">{{ 'global.enter'|trans }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
