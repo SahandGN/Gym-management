@@ -1,36 +1,39 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{'global.membership'|trans}}{% endblock %}
-
 {% block body %}
     <h1>{{'global.membership'|trans}}</h1>
 
-        {% for membership in memberships %}
-            <div class="card bg-light mb-3 d-lg-inline-flex" style="max-width: 18rem;">
-                <div class="card-header">{{ membership.name }}</div>
-                <div class="card-body">
-                    <p class="card-text"><small>{{'global.product_price'|trans}}</small></p>
-                    <h5 class="card-title"> {{membership.price | format_currency('IRR')}} </h5>
-                    <h5 class="card-title"> <small> {{'global.length'|trans}} </small> : {{membership.length}} </h5>
-                    <h5 class="card-title"> <small> {{'global.duration'|trans}} </small> : {{membership.duration}} </h5>
-                    <br>
-                    <div>
-                        <a href="{{ path('app_locker_show', {'id': membership.id}) }}" class="btn btn-primary">
-                            {{ 'global.show'|trans }}</a>
-                        <a href="{{ path('app_locker_edit', {'id': membership.id}) }}" class="btn btn-info">
-                            {{ 'global.edit'|trans }}</a>
-                    </div>
+    {% for membership in memberships %}
+        <div class="card bg-light mb-3 d-lg-inline-flex" style="max-width: 18rem;">
+            <div class="card-header">{{ membership.name }}</div>
+            <div class="card-body">
+                <p class="card-text"><small>{{'global.product_price'|trans}}</small></p>
+                <h5 class="card-title"> {{membership.price | format_currency('IRR')}} </h5>
+                <h5 class="card-title"> <small> {{'global.length'|trans}} </small> : {{membership.numberOfClasses}} </h5>
+                <h5 class="card-title"> <small> {{'global.duration'|trans}} </small> : {{membership.duration}} </h5>
+                <br>
+                <div>
+                    <a href="{{ path('app_membership_show', {'id': membership.id}) }}" class="btn btn-primary">
+                        {{ 'global.show'|trans }}</a>
+                    {#                        {%if is_granted('ROLE_EMPLOYEE')%}#}
+                    <a href="{{ path('app_membership_edit', {'id': membership.id}) }}" class="btn btn-info">
+                        {{ 'global.edit'|trans }}</a>
+                    {#                        {%endif%}#}
                 </div>
             </div>
-        {% else %}
-            <div class="jumbotron">
-                <h1 class="display-4">{{ 'global.emptydata'|trans }}</h1>
-                <hr class="my-4">
-                <p>{{ 'global.create_data_text'|trans }}</p>
-            </div>
-        {% endfor %}
+        </div>
+    {% else %}
+        <div class="jumbotron">
+            <h1 class="display-4">{{ 'global.emptydata'|trans }}</h1>
+            <hr class="my-4">
+            <p>{{ 'global.create_data_text'|trans }}</p>
+        </div>
+    {% endfor %}
     <div>
-        <button type="button" class="btn btn-outline-dark btn-block" href="{{ path('app_locker_new') }}">
-            {{ 'global.create'|trans }}</button>
+        {#        {%if is_granted('ROLE_EMPLOYEE')%}#}
+        <a type="button" class="btn btn-outline-dark btn-block" href="{{ path('app_membership_new') }}">
+            {{ 'global.create'|trans }}</a>
+        {#        {%endif%}#}
     </div>
 {% endblock %}

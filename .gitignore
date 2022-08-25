@@ -5,3 +5,7 @@ docker/mysql
 .idea
 .DS_Store
 /src/migrations/1.temp
+/src/migrations/2.temp
+/src/migrations/3.temp
+src/src/Controller/New folder/
+

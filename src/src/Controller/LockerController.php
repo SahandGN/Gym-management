@@ -27,6 +27,7 @@ class LockerController extends AbstractController
     #[Route('/new', name: 'app_locker_new', methods: ['GET', 'POST'])]
     public function new(Request $request, LockerRepository $lockerRepository): Response
     {
+//        $this->denyAccessUnlessGranted('ROLE_EMPLOYEE');
         $locker = new Locker();
         $form = $this->createForm(LockerType::class, $locker);
         $form->handleRequest($request);
@@ -55,6 +56,7 @@ class LockerController extends AbstractController
     #[Route('/{id}/edit', name: 'app_locker_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Locker $locker, LockerRepository $lockerRepository): Response
     {
+//        $this->denyAccessUnlessGranted('ROLE_EMPLOYEE');
         $form = $this->createForm(LockerType::class, $locker);
         $form->handleRequest($request);
 
@@ -73,6 +75,7 @@ class LockerController extends AbstractController
     #[Route('/{id}', name: 'app_locker_delete', methods: ['POST'])]
     public function delete(Request $request, Locker $locker, LockerRepository $lockerRepository): Response
     {
+//        $this->denyAccessUnlessGranted('ROLE_EMPLOYEE');
         if ($this->isCsrfTokenValid('delete' . $locker->getId(), $request->request->get('_token'))) {
             $lockerRepository->remove($locker, true);
         }

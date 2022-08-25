@@ -14,7 +14,7 @@ class MembershipType extends AbstractType
         $builder
             ->add('name')
             ->add('price')
-            ->add('length')
+            ->add('numberOfClasses')
             ->add('duration')
         ;
     }

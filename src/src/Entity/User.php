@@ -19,6 +19,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TimeLog
 
     use TimeLoggerTrait;
 
+    const ROLE_EMPLOYEE = 'ROLE_EMPLOYEE';
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -50,11 +52,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TimeLog
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $lastname = null;
 
-    #[ORM\ManyToOne(inversedBy: 'member')]
-    private ?Membership $membership = null;
 
     #[ORM\Column(type:'datetime_immutable', nullable: true)]
     protected \DateTimeImmutable $shoppedAt;
+
+    #[ORM\ManyToOne(inversedBy: 'member')]
+    private ?Membership $membership = null;
 
 
     public function getId(): ?int
@@ -172,17 +175,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TimeLog
         return $this;
     }
 
-    public function getMembership(): ?Membership
-    {
-        return $this->membership;
-    }
-
-    public function setMembership(?Membership $membership): self
-    {
-        $this->membership = $membership;
-
-        return $this;
-    }
 
     public function getShoppedAt(): \DateTimeImmutable
     {
@@ -192,6 +184,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TimeLog
     public function setShoppedAt(\DateTimeImmutable $shoppedAt): TimeBuyerInterface
     {
         $this->shoppedAt = $shoppedAt;
+        return $this;
+    }
+
+    public function getMembership(): ?Membership
+    {
+        return $this->membership;
+    }
+
+    public function setMembership(?Membership $membership): self
+    {
+        $this->membership = $membership;
+
         return $this;
     }
 }

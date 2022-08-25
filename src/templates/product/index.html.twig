@@ -15,8 +15,10 @@
                     <div>
                         <a href="{{ path('app_locker_show', {'id': product.id}) }}" class="btn btn-primary">
                            {{ 'global.show'|trans }}</a>
+{#                        {%if is_granted('ROLE_EMPLOYEE')%}#}
                         <a href="{{ path('app_locker_edit', {'id': product.id}) }}" class="btn btn-info">
                             {{ 'global.edit'|trans }}</a>
+{#                        {%endif%}#}
                     </div>
                 </div>
             </div>
@@ -28,7 +30,9 @@
             </div>
         {% endfor %}
     <div>
+{#        {%if is_granted('ROLE_EMPLOYEE')%}#}
         <button type="button" class="btn btn-outline-dark btn-block" href="{{ path('app_locker_new') }}">
             {{ 'global.create'|trans }}</button>
+{#        {%endif%}#}
     </div>
 {% endblock %}
