@@ -1,0 +1,44 @@
+login:
+  title: Login
+  username: Phone number
+  password: Password
+  welcome:
+    title: Welcome
+  button: Login
+register:
+  button: Register
+  title: Register
+form:
+  register:
+    username: Phone number
+    name: Name
+    lastname: Last Name
+    password: Password
+global:
+  id: ID
+  name: Name
+  price: Price
+  length: Number of classes
+  duration: Duration
+  action: Action
+  show: Show
+  edit: Edit
+  emptydata: No content found
+  create: Create new
+  number: Number
+  open: Open
+  close: Close
+  empty: Empty
+  full: Full
+  welcome: Welcome
+  product: Product
+  membership: Membership
+  enter: Enter
+  locker: Locker
+  create_data_text: For create new content click the button
+  product_price: Product price
+locker:
+  isempty: Status
+user:
+  openlocker: Open locker
+  give_me_locker: Give me a locker
