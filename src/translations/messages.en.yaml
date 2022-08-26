@@ -70,3 +70,6 @@ product:
 membership:
     new: New membership
     create_new: Create new membership
+app:
+  name: Atlas Gym
+  home: Home
