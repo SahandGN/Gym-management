@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Product{% endblock %}
+{% block title %}{{ 'product.new' | trans }}{% endblock %}
 
 {% block body %}
-    <h1>Create new Product</h1>
+    <h1>{{ 'product.create_new' | trans }}</h1>
 
     {{ include('product/_form.html.twig') }}
 
-    <a href="{{ path('app_product_index') }}">back to list</a>
+    <a class="btn btn-outline-warning"  href="{{ path('app_product_index')}}">{{ 'global.back' | trans }}</a>
 {% endblock %}

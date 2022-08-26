@@ -14,6 +14,12 @@ form:
     name: نام
     lastname: نام خانوادگی
     password: رمز
+  name: نام
+  price: قیمت
+  number: عدد
+  membership:
+    classes: تعداد جلسات
+    duration: مدت
 global:
   id: شناسه
   name: نام
@@ -39,8 +45,16 @@ global:
   product_price: قیمت محصول
   buy: خرید
   logout: خروج
+  back: بازگشت به عقب
+  delete: حذف
+  new: محتوای جدید
+  number_of_classes: تعداد جلسات
+  save: ذخیره
 locker:
   isempty: وضعیت
+  owner: کاربر
+  new: کمد جدید
+  create_new: ساخت کمد جدید
 user:
   openlocker: باز کردن کمد
   give_me_locker: یک کمد برایم باز کن
@@ -48,3 +62,13 @@ user:
   remaining_class: جلسات باقی مانده
   remaining_time: زمان باقی مانده
   empty_locker: خالی کردن کمد
+  credit: اعتبار
+product:
+  new: محصول جدید
+  create_new: ساخت محصول جدید
+  edit: ویرایش
+membership:
+  new: عضویت جدید
+  create_new: ساخت عضویت جدید
+
+

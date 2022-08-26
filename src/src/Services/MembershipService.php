@@ -47,7 +47,6 @@ class MembershipService
 
         /** @var User $user */
         $user = $token == null ? null : $this->tokenStorage->getToken()->getUser();
-
         $user->setMembership($membership);
         $user->setNumberOfClasses($membership->getNumberOfClasses());
         $user->setShoppedAt(new \DateTimeImmutable());

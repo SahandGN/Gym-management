@@ -23,6 +23,7 @@ class LockerRepository extends ServiceEntityRepository
 
     public function add(Locker $entity, bool $flush = false): void
     {
+        $entity->setIsEmpty(true);
         $this->getEntityManager()->persist($entity);
 
         if ($flush) {

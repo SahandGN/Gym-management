@@ -5,13 +5,14 @@ namespace App\Controller;
 use App\Entity\Membership;
 use App\Form\MembershipType;
 use App\Repository\MembershipRepository;
+use App\Services\CreditService;
 use App\Services\MembershipService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/membership')]
+#[Route('/{_locale}/membership')]
 class MembershipController extends AbstractController
 {
     #[Route('/', name: 'app_membership_index', methods: ['GET'])]
@@ -78,9 +79,10 @@ class MembershipController extends AbstractController
     }
 
     #[Route('/{id}/buy', name: 'app_membership_buy', methods: ['GET'])]
-    public function buy(Membership $membership, MembershipService $membershipService): Response
+    public function buy(Membership $membership, MembershipService $membershipService, CreditService $creditService): Response
     {
-        $membershipService->buyMembership($membership);
+        $creditService->buy($membership);
+//        $membershipService->buyMembership($membership);
         return $this->redirectToRoute('app_user', [], Response::HTTP_SEE_OTHER);
     }
 }

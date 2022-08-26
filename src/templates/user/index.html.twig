@@ -4,6 +4,7 @@
 
 {% block body %}
     <h2>{{ 'global.welcome'|trans }}</h2>
+    <br>
     <h1>
         {% if user.name is not null %}
             {{ user.name }}
@@ -15,6 +16,8 @@
         {% endif %}
     </h1>
     <br>
+    <h4>{{ 'user.credit'|trans }}</h4>
+    <h3>{{user.credit | format_currency('IRR')}}</h3>
     <div class="card-group">
         <div
                 {% if user.getLocker is null %}
@@ -33,7 +36,7 @@
                     <p class="card-text">{{ 'user.locker_number'|trans }}</p>
                     <p class="card-text">{{ user.getLocker.getNumber }}</p>
                     <a href="{{ path('app_user_locker_empty', {'id': user.id}) }}"
-                       class="btn btn-outline-primary">{{ 'empty_locker'|trans }}</a>
+                       class="btn btn-outline-primary">{{ 'user.empty_locker'|trans }}</a>
                 {% endif %}
             </div>
         </div>

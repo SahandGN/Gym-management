@@ -1,35 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Locker{% endblock %}
+{% block title %}{{ 'global.locker' | trans }}{% endblock %}
 
 {% block body %}
-    <h1>Locker</h1>
+    <h1>{{ 'global.locker' | trans }}</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>{{ 'global.id' | trans }}</th>
                 <td>{{ locker.id }}</td>
             </tr>
             <tr>
-                <th>Number</th>
+                <th>{{ 'global.number' | trans }}</th>
                 <td>{{ locker.number }}</td>
             </tr>
             <tr>
-                <th>IsEmpty</th>
-                <td>{{ locker.isEmpty ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Owner</th>
-                <td>{{ locker.owner.username }}</td>
+                <th>{{ 'locker.isempty' | trans }}</th>
+                <td>                    {% if locker.isEmpty %}
+                        {{ 'global.empty'|trans }}
+                    {% else %}
+                        {{ 'global.full'|trans }}
+                    {% endif %}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_locker_index') }}">back to list</a>
+    <a class="btn btn-outline-warning" href="{{ path('app_locker_index') }}">{{ 'global.back' | trans }}</a>
 
-    <a href="{{ path('app_locker_edit', {'id': locker.id}) }}">edit</a>
-    <a href="{{ path('app_locker_open', {'id': locker.id}) }}">{{ locker.isEmpty ? 'Open' : 'Close' }}</a>
+    <a class="btn btn-outline-primary" href="{{ path('app_locker_edit', {'id': locker.id}) }}">{{ 'global.edit' | trans }}</a>
+    <a class="btn btn-outline-dark" href="{{ path('app_locker_open', {'id': locker.id}) }}">
+        {% if locker.isEmpty %} {{ 'global.close'|trans }}
+        {% else %} {{ 'global.open'|trans }} {% endif %}</a>
 
     {{ include('locker/_delete_form.html.twig') }}
 {% endblock %}

@@ -14,6 +14,12 @@ form:
     name: Name
     lastname: Last Name
     password: Password
+  name: Name
+  price: Price
+  number: Number
+  membership:
+    classes: Number of classes
+    duration: Duration
 global:
   id: ID
   name: Name
@@ -38,11 +44,29 @@ global:
   create_data_text: For create new content click the button
   product_price: Product price
   buy: Buy
+  back: Back
+  delete: Delete
+  new: New
+  number_of_classes: Number of classes
+  save: Save
 locker:
   isempty: Status
+  owner: Owner
+  new: New locker
+  create_new: Create new locker
 user:
   openlocker: Open locker
   give_me_locker: Give me a locker
   locker_number: Locker Number
   remaining_time: Remaining time
   remaining_class: Remaining classes
+  empty_locker: Empty locker
+  credit: Credit
+product:
+    new: New product
+    create_new: Create new product
+    edit: Edit
+membership:
+    new: New membership
+    create_new: Create new membership
+

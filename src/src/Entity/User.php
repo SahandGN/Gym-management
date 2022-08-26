@@ -62,6 +62,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TimeLog
     #[ORM\Column(nullable: true)]
     private ?int $numberOfClasses = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $credit = null;
+
 
     public function getId(): ?int
     {
@@ -210,6 +213,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TimeLog
     public function setNumberOfClasses(int $numberOfClasses): self
     {
         $this->numberOfClasses = $numberOfClasses;
+
+        return $this;
+    }
+
+    public function getCredit(): ?int
+    {
+        return $this->credit;
+    }
+
+    public function setCredit(?int $credit): self
+    {
+        $this->credit = $credit;
 
         return $this;
     }

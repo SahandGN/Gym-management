@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use function PHPUnit\Framework\throwException;
 
-#[Route('/locker')]
+#[Route('/{_locale}/locker')]
 class LockerController extends AbstractController
 {
     #[Route('/', name: 'app_locker_index', methods: ['GET'])]

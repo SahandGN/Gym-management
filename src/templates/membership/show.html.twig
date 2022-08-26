@@ -1,38 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Membership{% endblock %}
+{% block title %}{{ membership.name }}{% endblock %}
 
 {% block body %}
-    <h1>Membership</h1>
+    <h1>{{ membership.name }}</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>{{ 'global.id' | trans }}</th>
                 <td>{{ membership.id }}</td>
             </tr>
             <tr>
-                <th>Name</th>
+                <th>{{ 'global.name' | trans }}</th>
                 <td>{{ membership.name }}</td>
             </tr>
             <tr>
-                <th>Price</th>
-                <td>{{ membership.price }}</td>
+                <th>{{ 'global.price' | trans }}</th>
+                <td>{{membership.price | format_currency('IRR')}} </td>
             </tr>
             <tr>
-                <th>NumberOfClasses</th>
+                <th>{{ 'global.number_of_classes' | trans }}</th>
                 <td>{{ membership.numberOfClasses }}</td>
             </tr>
             <tr>
-                <th>Duration</th>
+                <th>{{ 'global.duration' | trans }}</th>
                 <td>{{ membership.duration }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_membership_index') }}">back to list</a>
+    <a class="btn btn-outline-warning" href="{{ path('app_membership_index') }}">{{ 'global.back' | trans }}</a>
 
-    <a href="{{ path('app_membership_edit', {'id': membership.id}) }}">edit</a>
+    <a class="btn btn-outline-primary" href="{{ path('app_membership_edit', {'id': membership.id}) }}">{{ 'global.edit' | trans }}</a>
 
     {{ include('membership/_delete_form.html.twig') }}
 {% endblock %}

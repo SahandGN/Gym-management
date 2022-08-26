@@ -12,10 +12,18 @@ class MembershipType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('price')
-            ->add('numberOfClasses')
-            ->add('duration')
+            ->add('name', null,[
+                'label' => 'form.name',
+            ])
+            ->add('price', null,[
+                'label' => 'form.price',
+            ])
+            ->add('numberOfClasses', null,[
+                'label' => 'form.membership.classes',
+            ])
+            ->add('duration', null,[
+                'label' => 'form.membership.duration',
+            ])
         ;
     }
 
