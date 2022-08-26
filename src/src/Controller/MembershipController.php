@@ -75,4 +75,12 @@ class MembershipController extends AbstractController
 
         return $this->redirectToRoute('app_membership_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/{id}/buy', name: 'app_membership_buy', methods: ['GET'])]
+    public function buy(Request $request, Membership $membership, MembershipRepository $membershipRepository): Response
+    {
+        echo ($membership->getName());
+        exit();
+        return $this->redirectToRoute('app_membership_index', [], Response::HTTP_SEE_OTHER);
+    }
 }

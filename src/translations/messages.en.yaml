@@ -37,6 +37,7 @@ global:
   locker: Locker
   create_data_text: For create new content click the button
   product_price: Product price
+  buy: Buy
 locker:
   isempty: Status
 user:

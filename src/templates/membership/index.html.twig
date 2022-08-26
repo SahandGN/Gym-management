@@ -16,10 +16,13 @@
                 <div>
                     <a href="{{ path('app_membership_show', {'id': membership.id}) }}" class="btn btn-primary">
                         {{ 'global.show'|trans }}</a>
+                    <a href="{{ path('app_membership_buy', {'id': membership.id}) }}" class="btn btn-secondary">
+                        {{ 'global.buy'|trans }}</a>
                     {#                        {%if is_granted('ROLE_EMPLOYEE')%}#}
                     <a href="{{ path('app_membership_edit', {'id': membership.id}) }}" class="btn btn-info">
                         {{ 'global.edit'|trans }}</a>
                     {#                        {%endif%}#}
+
                 </div>
             </div>
         </div>

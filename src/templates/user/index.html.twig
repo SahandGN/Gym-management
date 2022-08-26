@@ -4,41 +4,55 @@
 
 {% block body %}
     <h2>{{ 'global.welcome'|trans }}</h2>
-    <h1>{%if user.name is not null%} {{ user.name }}
-    {%else%}{{ user.username }}{%endif%}!
+    <h1>
+        {% if user.name is not null %}
+            {{ user.name }}
+            {% if user.lastname is not null %}
+                {{ user.lastname }}
+            {% endif %}
+        {% else %}
+            {{ user.username }}
+        {% endif %}
     </h1>
     <br>
     <div class="container">
         <div class="row justify-content-md-center">
             <div class="row align-items-center">
                 <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ 'user.give_me_locker'|trans }}</h5>
-                            <br>
-                            <a href="{{ path('app_user_locker') }}"
-                               class="btn btn-primary">{{ 'user.openlocker'|trans }}</a>
-                        </div>
+                    <div
+                            {% if user.getLocker is null %}
+                            class="card border-dark mb-3"
+                            {% else %}
+                            class="card border-warning mb-3"
+                            {%endif%}
+                            style="max-width: 18rem;">
+                            {% if user.getLocker is null %}
+                                <h5 class="card-header">{{ 'user.openlocker'|trans }}</h5>
+                                <a href="{{ path('app_user_locker') }}"
+                                   class="btn btn-outline-primary">{{ 'user.give_me_locker'|trans }}</a>
+                            {% else %}
+                                <h5 class="card-header">{{ 'user.openlocker'|trans }}</h5>
+                                <p class="card-text">{{ 'user.locker_number'|trans }}</p>
+                                <p class="card-text">{{ user.getLocker.getId }}</p>
+                                <a href="{{ path('app_user') }}"
+                                   class="btn btn-outline-primary">{{ 'user.give_me_locker'|trans }}</a>
+                            {% endif %}
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
+                    <div class="card border-dark mb-3" style="max-width: 18rem;">
                             <h5 class="card-title">{{ 'global.membership'|trans }}</h5>
                             <br>
                             <a href="{{ path('app_membership_index') }}"
-                               class="btn btn-primary">{{ 'global.enter'|trans }}</a>
-                        </div>
+                               class="btn btn-outline-primary">{{ 'global.enter'|trans }}</a>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-body">
+                    <div class="card border-dark mb-3" style="max-width: 18rem;">
                             <h5 class="card-title">{{ 'global.product'|trans }}</h5>
                             <br>
                             <a href="{{ path('app_product_index') }}"
-                               class="btn btn-primary">{{ 'global.enter'|trans }}</a>
-                        </div>
+                               class="btn btn-outline-primary">{{ 'global.enter'|trans }}</a>
                     </div>
                 </div>
             </div>
