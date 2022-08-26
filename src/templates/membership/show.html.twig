@@ -7,32 +7,34 @@
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>{{ 'global.id' | trans }}</th>
-                <td>{{ membership.id }}</td>
-            </tr>
-            <tr>
-                <th>{{ 'global.name' | trans }}</th>
-                <td>{{ membership.name }}</td>
-            </tr>
-            <tr>
-                <th>{{ 'global.price' | trans }}</th>
-                <td>{{membership.price | format_currency('IRR')}} </td>
-            </tr>
-            <tr>
-                <th>{{ 'global.number_of_classes' | trans }}</th>
-                <td>{{ membership.numberOfClasses }}</td>
-            </tr>
-            <tr>
-                <th>{{ 'global.duration' | trans }}</th>
-                <td>{{ membership.duration }}</td>
-            </tr>
+        <tr>
+            <th>{{ 'global.id' | trans }}</th>
+            <td>{{ membership.id }}</td>
+        </tr>
+        <tr>
+            <th>{{ 'global.name' | trans }}</th>
+            <td>{{ membership.name }}</td>
+        </tr>
+        <tr>
+            <th>{{ 'global.price' | trans }}</th>
+            <td>{{ membership.price | format_currency('IRR') }} </td>
+        </tr>
+        <tr>
+            <th>{{ 'global.number_of_classes' | trans }}</th>
+            <td>{{ membership.numberOfClasses }}</td>
+        </tr>
+        <tr>
+            <th>{{ 'global.duration' | trans }}</th>
+            <td>{{ membership.duration }}</td>
+        </tr>
         </tbody>
     </table>
 
     <a class="btn btn-outline-warning" href="{{ path('app_membership_index') }}">{{ 'global.back' | trans }}</a>
+    {% if is_granted('ROLE_EMPLOYEE') %}
+        <a class="btn btn-outline-primary"
+           href="{{ path('app_membership_edit', {'id': membership.id}) }}">{{ 'global.edit' | trans }}</a>
 
-    <a class="btn btn-outline-primary" href="{{ path('app_membership_edit', {'id': membership.id}) }}">{{ 'global.edit' | trans }}</a>
-
-    {{ include('membership/_delete_form.html.twig') }}
+        {{ include('membership/_delete_form.html.twig') }}
+    {% endif %}
 {% endblock %}

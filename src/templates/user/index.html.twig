@@ -17,13 +17,17 @@
     </h1>
     <br>
     <h4>{{ 'user.credit'|trans }}</h4>
-    <h3>{{user.credit | format_currency('IRR')}}</h3>
+    {% if user.credit is not null %}
+        <h3>{{ user.credit | format_currency('IRR') }}</h3>
+        {% else %}
+            <h3>0</h3>
+    {% endif %}
     <div class="card-group">
         <div
                 {% if user.getLocker is null %}
-            class="card"
+                    class="card"
                 {% else %}
-            class="card text-success border-success"
+                    class="card text-success border-success"
                 {% endif %}
         >
             <div class="card-body">
@@ -45,7 +49,7 @@
                 <h5 class="card-title">{{ 'global.membership'|trans }}</h5>
                 <p class="card-text">
                     {{ 'user.remaining_class'|trans }}
-                    {{user.getnumberofclasses}}</p>
+                    {{ user.getnumberofclasses }}</p>
                 <a href="{{ path('app_membership_index') }}"
                    class="btn btn-outline-primary">{{ 'global.enter'|trans }}</a>
             </div>
@@ -58,4 +62,7 @@
             </div>
         </div>
     </div>
+    <br>
+    <a href="{{ path('app_logout') }}"
+       class="btn btn-outline-danger"> {{ 'global.logout'|trans }}</a>
 {% endblock %}

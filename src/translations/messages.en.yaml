@@ -49,6 +49,7 @@ global:
   new: New
   number_of_classes: Number of classes
   save: Save
+  logout: Logout
 locker:
   isempty: Status
   owner: Owner
@@ -69,4 +70,3 @@ product:
 membership:
     new: New membership
     create_new: Create new membership
-

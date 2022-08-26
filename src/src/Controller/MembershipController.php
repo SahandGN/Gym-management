@@ -26,6 +26,7 @@ class MembershipController extends AbstractController
     #[Route('/new', name: 'app_membership_new', methods: ['GET', 'POST'])]
     public function new(Request $request, MembershipRepository $membershipRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_EMPLOYEE');
         $membership = new Membership();
         $form = $this->createForm(MembershipType::class, $membership);
         $form->handleRequest($request);
@@ -53,6 +54,7 @@ class MembershipController extends AbstractController
     #[Route('/{id}/edit', name: 'app_membership_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Membership $membership, MembershipRepository $membershipRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_EMPLOYEE');
         $form = $this->createForm(MembershipType::class, $membership);
         $form->handleRequest($request);
 
@@ -71,6 +73,7 @@ class MembershipController extends AbstractController
     #[Route('/{id}', name: 'app_membership_delete', methods: ['POST'])]
     public function delete(Request $request, Membership $membership, MembershipRepository $membershipRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_EMPLOYEE');
         if ($this->isCsrfTokenValid('delete'.$membership->getId(), $request->request->get('_token'))) {
             $membershipRepository->remove($membership, true);
         }

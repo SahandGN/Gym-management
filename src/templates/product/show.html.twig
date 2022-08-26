@@ -3,7 +3,7 @@
 {% block title %}{{ product.name }}{% endblock %}
 
 {% block body %}
-    <h1>{{ 'global.id' | trans }}</h1>
+    <h1>{{ product.name }}</h1>
 
     <table class="table">
         <tbody>
@@ -23,8 +23,9 @@
     </table>
 
     <a class="btn btn-outline-warning" href="{{ path('app_product_index') }}">{{ 'global.back' | trans }}</a>
-
+    {% if is_granted('ROLE_EMPLOYEE') %}
     <a class="btn btn-outline-primary" href="{{ path('app_product_edit', {'id': product.id}) }}">{{ 'global.edit' | trans }}</a>
 
     {{ include('product/_delete_form.html.twig') }}
+    {% endif %}
 {% endblock %}

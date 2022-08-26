@@ -19,6 +19,7 @@ class ProductController extends AbstractController
     #[Route('/', name: 'app_product_index', methods: ['GET'])]
     public function index(ProductRepository $productRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_EMPLOYEE');
         return $this->render('product/index.html.twig', [
             'products' => $productRepository->findAll(),
         ]);
@@ -27,7 +28,7 @@ class ProductController extends AbstractController
     #[Route('/new', name: 'app_product_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ProductRepository $productRepository): Response
     {
-//        $this->denyAccessUnlessGranted('ROLE_EMPLOYEE');
+        $this->denyAccessUnlessGranted('ROLE_EMPLOYEE');
         $product = new Product();
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
@@ -55,6 +56,7 @@ class ProductController extends AbstractController
     #[Route('/{id}/edit', name: 'app_product_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Product $product, ProductRepository $productRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_EMPLOYEE');
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
 
@@ -73,6 +75,7 @@ class ProductController extends AbstractController
     #[Route('/{id}', name: 'app_product_delete', methods: ['POST'])]
     public function delete(Request $request, Product $product, ProductRepository $productRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_EMPLOYEE');
         if ($this->isCsrfTokenValid('delete'.$product->getId(), $request->request->get('_token'))) {
             $productRepository->remove($product, true);
         }
