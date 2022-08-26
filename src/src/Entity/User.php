@@ -59,6 +59,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TimeLog
     #[ORM\ManyToOne(inversedBy: 'member')]
     private ?Membership $membership = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $numberOfClasses = null;
+
 
     public function getId(): ?int
     {
@@ -195,6 +198,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TimeLog
     public function setMembership(?Membership $membership): self
     {
         $this->membership = $membership;
+
+        return $this;
+    }
+
+    public function getNumberOfClasses(): ?int
+    {
+        return $this->numberOfClasses;
+    }
+
+    public function setNumberOfClasses(int $numberOfClasses): self
+    {
+        $this->numberOfClasses = $numberOfClasses;
 
         return $this;
     }

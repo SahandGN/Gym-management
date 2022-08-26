@@ -25,43 +25,49 @@ class MembershipService
     }
 
 
-    public function membershipIdentifier($membershipId): ?\App\Entity\Membership
+    public function membershipClassReducer()
     {
 
-        $memberships = $this->membershipRepository->findAll();
-
-        foreach ($memberships as $membership) {
-            if ($membership->getId() == $membershipId) {
-                return $membership;
-            }
-        }
-        return null;
-    }
-
-    public function buyMembership($membershipId)
-    {
-        $memberships = $this->membershipRepository->findAll();
         $token = $this->tokenStorage->getToken();
 
-        /** @var User $loggedUser */
-        $loggedUser = $token == null ? null : $this->tokenStorage->getToken()->getUser();
+        /** @var User $user */
+        $user = $token == null ? null : $this->tokenStorage->getToken()->getUser();
 
-        $users = $this->userRepository->findAll();
-
-        foreach ($users as $u)
-        {
-            if ($u->getId() == $loggedUser->getId()){
-                $user = $u;
-            }
+        if ( 0 < $user->getNumberOfClasses()){
+        $user->setNumberOfClasses($user->getNumberOfClasses() - 1);
+        return true;
         }
+        return false;
+    }
 
-        foreach ($memberships as $membership){
-            if ($membership->getId() == $membershipId){
-                $user->setMembership($membership);
-                $user->setShoppedAt(new \DateTimeImmutable());
-                $this->userRepository->add($user);
-            }
-        }
+    public function buyMembership(Membership $membership)
+    {
+
+        $token = $this->tokenStorage->getToken();
+
+        /** @var User $user */
+        $user = $token == null ? null : $this->tokenStorage->getToken()->getUser();
+
+        $user->setMembership($membership);
+        $user->setNumberOfClasses($membership->getNumberOfClasses());
+        $user->setShoppedAt(new \DateTimeImmutable());
+        $this->userRepository->add($user,true);
+
+    }
+
+    public function remainingDays ()
+    {
+//        $date = $user->getShoppedAt();
+//        $interval = new DateInterval('P1M');
+//        echo $date->format('Y-m-d') . "\n";
+//        $newDate1 = $date->add($interval);
+//        echo $newDate1->format('Y-m-d') . "\n";
+//
+//        $difdate = $date->
+//        echo $difdate->format('Y-m-d') . "\n";
+//
+//        $newDate2 = $newDate1->add($interval);
+//        echo $newDate2->format('Y-m-d') . "\n";
 
     }
 }

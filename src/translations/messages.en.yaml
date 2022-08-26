@@ -43,3 +43,6 @@ locker:
 user:
   openlocker: Open locker
   give_me_locker: Give me a locker
+  locker_number: Locker Number
+  remaining_time: Remaining time
+  remaining_class: Remaining classes

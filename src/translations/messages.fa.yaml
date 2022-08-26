@@ -38,9 +38,13 @@ global:
   create_data_text: برای ایجاد محتوای جدید روی دکمه زیر کلیک کنید
   product_price: قیمت محصول
   buy: خرید
+  logout: خروج
 locker:
   isempty: وضعیت
 user:
   openlocker: باز کردن کمد
   give_me_locker: یک کمد برایم باز کن
   locker_number: شماره کمد
+  remaining_class: جلسات باقی مانده
+  remaining_time: زمان باقی مانده
+  empty_locker: خالی کردن کمد

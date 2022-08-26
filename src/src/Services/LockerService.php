@@ -19,7 +19,7 @@ class LockerService
     }
 
 
-    public function checkAvailability()
+    public function checkAvailability(): bool
     {
 
 
@@ -35,6 +35,25 @@ class LockerService
             if ($locker->isIsEmpty()) {
                 $locker->setOwner($user);
                 $locker->setIsEmpty(false);
+                $this->lockerRepository->add($locker, true);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function emptyLocker(User $user): bool
+    {
+
+        /** @var locker[] $lockers */
+        $lockers = $this->lockerRepository->findAll();
+
+
+
+        foreach ($lockers as $locker) {
+            if ($locker === $user->getLocker()) {
+                $locker->setOwner(null);
+                $locker->setIsEmpty(true);
                 $this->lockerRepository->add($locker, true);
                 return true;
             }
